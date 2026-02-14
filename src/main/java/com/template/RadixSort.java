@@ -2,21 +2,20 @@ package com.template;
 
 public class RadixSort {
 
-    public static void sort(Integer[] array){
+    public static void sort(Integer[] array) {
 
         int max = getMax(array);
 
         for (int exp = 1; max / exp > 0; exp *= 10) {
-            countSort(array, exp);
+            countingSort(array, exp);
         }
     }
 
-    private static int getMax(int[] array) {
+    private static int getMax(Integer[] array) {
 
         int max = array[0];
 
         for (int i = 1; i < array.length; i++) {
-
             if (array[i] > max) {
                 max = array[i];
             }
@@ -25,10 +24,10 @@ public class RadixSort {
         return max;
     }
 
-    private static void countSort(int[] array, int exp) {
+    private static void countingSort(Integer[] array, int exp) {
 
         int n = array.length;
-        int[] output = new int[n];
+        Integer[] output = new Integer[n];
         int[] count = new int[10];
 
         for (int i = 0; i < n; i++) {
@@ -40,10 +39,9 @@ public class RadixSort {
         }
 
         for (int i = n - 1; i >= 0; i--) {
-
-            int index = (array[i] / exp) % 10;
-            output[count[index] - 1] = array[i];
-            count[index]--;
+            int digit = (array[i] / exp) % 10;
+            output[count[digit] - 1] = array[i];
+            count[digit]--;
         }
 
         for (int i = 0; i < n; i++) {
