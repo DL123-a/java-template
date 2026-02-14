@@ -2,7 +2,7 @@ package com.template;
 
 public class RadixSort {
 
-    public static void sort(int[] array) {
+    public static void sort(Integer[] array){
 
         int max = getMax(array);
 
