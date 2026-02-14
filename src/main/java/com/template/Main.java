@@ -1,46 +1,51 @@
 package com.template;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
-    private static final int ARRAY_SIZE = 100000;
-    private static final int ITERATIONS = 1000;
-    
+
+    private static final int ARRAY_SIZE = 10000;
+
     public static void main(String[] args) {
-        System.out.println("Starting profiling demo application...");
-        System.out.println("JDK Version: " + System.getProperty("java.version"));
-        
-        performBubbleSort();
-        
-        System.out.println("Application completed successfully.");
-    }
-    
-    private static void performBubbleSort() {
-        System.out.println("Performing bubble sort...");
+
+        System.out.println("Iniciando programa...");
+        System.out.println("Version de Java: " + System.getProperty("java.version"));
+
         Random random = new Random();
-        int[] array = new int[ARRAY_SIZE / 10];
-        
-        for (int i = 0; i < array.length; i++) {
-            array[i] = random.nextInt(1000);
-        }
-        
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j, j+1);
-                }
-            }
-        }
-        
-        System.out.println("Bubble sort completed.");
-    }
 
-    private static void swap(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp; 
-    }
+        // -------- BubbleSort ----------
+        Integer[] bubbleArray = new Integer[ARRAY_SIZE];
 
+        for(int i = 0; i < bubbleArray.length; i++){
+            bubbleArray[i] = random.nextInt(1000);
+        }
+
+        BubbleSort.sort(bubbleArray);
+        System.out.println("BubbleSort terminado");
+
+
+        // -------- QuickSort ----------
+        Integer[] quickArray = bubbleArray.clone();
+        QuickSort.sort(quickArray);
+        System.out.println("QuickSort terminado");
+
+
+        // -------- MergeSort ----------
+        Integer[] mergeArray = bubbleArray.clone();
+        MergeSort.sort(mergeArray);
+        System.out.println("MergeSort terminado");
+
+
+        // -------- RadixSort ----------
+        int[] radixArray = new int[ARRAY_SIZE];
+
+        for(int i = 0; i < radixArray.length; i++){
+            radixArray[i] = random.nextInt(1000);
+        }
+
+        RadixSort.sort(radixArray);
+        System.out.println("RadixSort terminado");
+
+        System.out.println("Programa finalizado.");
+    }
 }
